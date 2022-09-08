@@ -22,13 +22,29 @@
   luksab = {
     firmware.enable = true;
     desktop.enable = true;
-    wireguard = {
-      enable = true;
-      ips = [ "10.31.69.109/24" ];
-      allowedIPs = [ "10.31.69.0/24" ];
-      # allowedIPs = [ "0.0.0.0/0" ];
-    };
+    # wireguard = {
+    #   enable = true;
+    #   # server = "2a03:4000:1c:6c3::1:51820";
+    #   ips = [ "10.31.69.109/24" ];
+    #   allowedIPs = [ "10.31.69.0/24" ];
+    #   # allowedIPs = [ "0.0.0.0/0" ];
+    # };
   };
+
+  # # Mullvard
+  # networking.wg-quick.interfaces.wg0 = {
+  #   listenPort = 51820;
+  #   address = "10.65.223.30/32" "fc00:bbbb:bbbb:bb01::2:df1d/128";
+  #   # Path to the private key file
+  #   privateKeyFile = "/var/secrets/wireguard/mullvard";
+
+  #   peers = [{
+  #     publicKey = "jLddqPJjcG0nGagLsJwxGWWkKcS0GwQgiEZL7iX/n0E=";
+  #     allowedIPs = [ "0.0.0.0/0" "::0/0" ];
+  #     endpoint = "91.193.4.162:51820";
+  #     persistentKeepalive = 15;
+  #   }];
+  # };
 
   # Automatically configure monitors with autorandr
   services.autorandr = {

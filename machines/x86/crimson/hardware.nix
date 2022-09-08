@@ -25,6 +25,23 @@
     wantedBy = [ "multi-user.target" ];
   };
 
+  networking.networkmanager.enableFccUnlock = true;
+  systemd.services.ModemManager.enable = true;
+
+  # environment.systemPackages = [ pkgs.jool-cli ];
+  # systemd.services.jool = {
+  #   serviceConfig = {
+  #     ExecStartPre = "${pkgs.kmod}/bin/modprobe jool";
+  #     ExecStart =
+  #       "${pkgs.jool-cli}/bin/jool instance add default --netfilter --pool6 64:ff9b::/96";
+  #     ExecStop = "${pkgs.jool-cli}/bin/jool instance remove default";
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+  #   };
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "network.target" ];
+  # };
+
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "conservative";
 

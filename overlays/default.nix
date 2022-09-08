@@ -15,23 +15,12 @@ in self: super: {
     makeWrapper = super.makeWrapper;
   };
   shortcut = super.pkgs.callPackage ../packages/shortcut { };
-  wrapOBS = super.pkgs.callPackage ../packages/ndi/obs-wrapper.nix { };
-  ndi = super.pkgs.callPackage ../packages/ndi { };
   davinci-resolve = super.pkgs.callPackage ../packages/davinci-resolve { };
   objectbox-bin = super.pkgs.callPackage ../packages/objectbox-bin { };
   #polymc = super.qt5.callPackage ../packages/polymc { };
   polymc = super.polymc.override {
     msaClientID = "d4434167-7a48-4be7-b463-647b1580e072";
   };
-  obs-studio-plugins.obs-ndi = super.obs-studio-plugins.obs-ndi.overrideAttrs
-    (old: { buildInputs = [ super.obs-studio super.qt5.qtbase self.ndi ]; });
-  obs = (self.wrapOBS {
-    plugins = with super.obs-studio-plugins; [
-      self.obs-studio-plugins.obs-ndi
-      self.stable.obs-studio-plugins.obs-websocket
-      obs-move-transition
-    ];
-  });
 
   # override with newer version from nixpkgs-unstable
   # tautulli = self.unstable.tautulli;
