@@ -1,5 +1,5 @@
 { self, ... }: {
-  networking.hostName = "crimson"; # Define your hostname.
+  networking.hostName = "tobi"; # Define your hostname.
 
   imports = [ ./amd_gpu.nix ./hardware.nix ./nameserver.nix ];
   # ++ [ # enable for VM
@@ -160,21 +160,21 @@
       [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
     extraModulePackages = [ ];
 
-    initrd.luks = {
-      reusePassphrases = true;
-      gpgSupport = true;
-      devices = {
-        root = {
-          # lsblk -o +UUID
-          # └─nvme0n1p2
-          device = "/dev/disk/by-uuid/68e1ecd5-0cc9-4e62-85fe-6cd600b6de46";
-          gpgCard = {
-            publicKey = ../desktop/yubikey-public.asc;
-            encryptedPass = ../desktop/pw.gpg;
-          };
-        };
-      };
-    };
+    # initrd.luks = {
+    #   reusePassphrases = true;
+    #   gpgSupport = true;
+    #   devices = {
+    #     root = {
+    #       # lsblk -o +UUID
+    #       # └─nvme0n1p2
+    #       device = "/dev/disk/by-uuid/68e1ecd5-0cc9-4e62-85fe-6cd600b6de46";
+    #       gpgCard = {
+    #         publicKey = ../desktop/yubikey-public.asc;
+    #         encryptedPass = ../desktop/pw.gpg;
+    #       };
+    #     };
+    #   };
+    # };
   };
 
   virtualisation.docker = { enable = true; };
