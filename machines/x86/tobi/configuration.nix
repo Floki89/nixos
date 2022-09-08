@@ -200,14 +200,14 @@
   fileSystems."/" = {
     # lsblk -o +UUID
     #      └─vg-root
-    device = "/dev/disk/by-uuid/3f7994ed-4810-40d6-aca1-274b2736404f";
+    device = "/dev/disk/by-uuid/f3d2abac-317b-474a-858f-3105e696ef1e";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
     # lsblk -o +UUID
     #      └─nvme0n1p1
-    device = "/dev/disk/by-uuid/D9B0-E901";
+    device = "/dev/disk/by-uuid/CEAB-223C";
     fsType = "vfat";
   };
 }
