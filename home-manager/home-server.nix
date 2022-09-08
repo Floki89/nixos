@@ -1,29 +1,26 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.luksab.user.lukas.home-manager;
+let cfg = config.luksab.user.tobi.home-manager;
 
-in
-{
-  options.luksab.user.lukas.home-manager = {
-    enable = mkEnableOption "activate headless home-manager profile for lukas";
+in {
+  options.luksab.user.tobi.home-manager = {
+    enable = mkEnableOption "activate headless home-manager profile for tobi";
   };
 
   config = mkIf cfg.enable {
     home-manager.useUserPackages = true;
 
-    home-manager.users.lukas = {
+    home-manager.users.tobi = {
       programs.home-manager.enable = true;
 
       programs.command-not-found.enable = true;
 
       # Home Manager needs a bit of information about you and the
       # paths it should manage.
-      home.username = "lukas";
-      home.homeDirectory = "/home/lukas";
+      home.username = "tobi";
+      home.homeDirectory = "/home/tobi";
 
-      luksab = {
-        programs.vim.enable = true;
-      };
+      luksab = { programs.vim.enable = true; };
 
       # Allow "unfree" licenced packages
       nixpkgs.config = { allowUnfree = true; };
@@ -53,12 +50,8 @@ in
       ];
 
       # Imports
-      imports = [
-        ./modules/vim
-        ../modules/options
-        ./modules/git
-        ./modules/zsh
-      ];
+      imports =
+        [ ./modules/vim ../modules/options ./modules/git ./modules/zsh ];
 
       # This value determines the Home Manager release that your
       # configuration is compatible with. This helps avoid breakage

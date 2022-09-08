@@ -1,33 +1,33 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.luksab.lukas-bot;
+let cfg = config.luksab.tobi-bot;
 in {
-  options.luksab.lukas-bot = {
-    enable = mkEnableOption "activate lukas-bot";
+  options.luksab.tobi-bot = {
+    enable = mkEnableOption "activate tobi-bot";
 
     dataDir = mkOption {
       type = types.path;
-      default = /var/lib/lukas-bot;
+      default = /var/lib/tobi-bot;
     };
 
     user = mkOption {
       type = types.str;
-      default = "lukas-bot";
+      default = "tobi-bot";
       example = "my-own-user";
-      description = "User to run lukas-bot as";
+      description = "User to run tobi-bot as";
     };
 
     group = mkOption {
       type = types.str;
-      default = "lukas-bot";
+      default = "tobi-bot";
       example = "my-own-group";
-      description = "Group to run lukas-bot as";
+      description = "Group to run tobi-bot as";
     };
   };
 
   config = mkIf cfg.enable {
 
-    systemd.services.lukas-bot = {
+    systemd.services.tobi-bot = {
       path = [
         pkgs.git
         pkgs.nodejs-16_x
@@ -64,14 +64,14 @@ in {
       };
     };
 
-    users = mkIf (cfg.user == "lukas-bot") {
+    users = mkIf (cfg.user == "tobi-bot") {
       groups."${cfg.group}" = { };
-      users.lukas-bot = {
+      users.tobi-bot = {
         isSystemUser = true;
         group = cfg.group;
         home = toString cfg.dataDir;
         createHome = true;
-        description = "lukas-bot system user";
+        description = "tobi-bot system user";
       };
     };
 

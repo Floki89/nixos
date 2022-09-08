@@ -7,7 +7,7 @@ in {
 
     user = mkOption {
       type = types.str;
-      default = "lukas";
+      default = "tobi";
       example = "my-own-user";
       description = "User to run shortcut as";
     };

@@ -35,7 +35,6 @@ in self: super: {
   discord_notify_go = super.pkgs.callPackage ../packages/discord_notify_go { };
   # cargo = self.unstable.cargo;
   # neovim-unwrapped = self.unstable.neovim-unwrapped;
-  # obs-studio = self.unstable.obs-studio;
   # rpiplay = self.unstable.rpiplay;
   # signal-desktop = self.unstable.signal-desktop;
   # spotify = self.unstable.spotify;

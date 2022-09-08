@@ -1,8 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.luksab.xserver;
-in
-{
+in {
 
   options.luksab.xserver = {
     enable = mkEnableOption "activate xserver";
@@ -53,7 +52,7 @@ in
 
       displayManager.autoLogin = {
         enable = true;
-        user = "lukas";
+        user = "tobi";
       };
 
       displayManager.defaultSession = "none+dwm";

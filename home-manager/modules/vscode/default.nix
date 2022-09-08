@@ -10,8 +10,7 @@ let
       # other python packages you want
     ];
   python-with-my-packages = pkgs.python3.withPackages my-python-packages;
-in
-{
+in {
   options.luksab.programs.vscode.enable = mkEnableOption "enable vscode";
   config = mkIf cfg.enable {
     home.packages = [ python-with-my-packages ];
@@ -38,16 +37,6 @@ in
           esbenp.prettier-vscode
           tamasfe.even-better-toml
         ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
-          name = "wgsl";
-          publisher = "polymeilex";
-          version = "0.1.12";
-          sha256 = "sha256-TaLcyBW3kuG/iu2ImWHXQjxkq92nJc1F91K6gqJLMtQ=";
-        }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
-          name = "wgsl-analyzer";
-          publisher = "wgsl-analyzer";
-          version = "0.4.6";
-          sha256 = "sha256-M+AO7cqPW7s4CZ9VSC8oE22MGK9pBH585XBU5WM2qB8=";
-        }] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
           name = "errorlens";
           publisher = "usernamehw";
           version = "3.5.1";

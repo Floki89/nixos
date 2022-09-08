@@ -1,17 +1,14 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.luksab.user.lukas;
-in
-{
-  options.luksab.user.lukas = {
-    enable = mkEnableOption "activate user lukas";
-  };
+let cfg = config.luksab.user.tobi;
+in {
+  options.luksab.user.tobi = { enable = mkEnableOption "activate user tobi"; };
 
   config = mkIf cfg.enable {
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.lukas = {
+    users.users.tobi = {
       isNormalUser = true;
-      home = "/home/lukas";
+      home = "/home/tobi";
       extraGroups = [
         "wheel"
         "video"
@@ -31,6 +28,6 @@ in
       ];
     };
 
-    nix.settings.allowed-users = [ "lukas" ];
+    nix.settings.allowed-users = [ "tobi" ];
   };
 }

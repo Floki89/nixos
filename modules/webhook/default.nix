@@ -1,8 +1,7 @@
 { lib, pkgs, config, ... }:
 with lib;
 let cfg = config.luksab.webhook;
-in
-{
+in {
   options.luksab.webhook = {
     enable = mkEnableOption "activate webhook";
 
@@ -13,7 +12,7 @@ in
 
     repo = mkOption {
       type = types.str;
-      default = "git@git.luksab.de:lukas/webhooks.git";
+      default = "git@git.luksab.de:tobi/webhooks.git";
     };
 
     user = mkOption {
@@ -34,12 +33,7 @@ in
   config = mkIf cfg.enable {
 
     systemd.services.webhook = {
-      path = [
-        pkgs.git
-        pkgs.openssh
-        pkgs.nix
-        pkgs.webhook
-      ];
+      path = [ pkgs.git pkgs.openssh pkgs.nix pkgs.webhook ];
       wantedBy = [ "default.target" ];
 
       preStart = ''

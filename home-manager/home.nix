@@ -1,16 +1,15 @@
 { lib, pkgs, config, ... }:
 with lib;
-let cfg = config.luksab.user.lukas.home-manager;
+let cfg = config.luksab.user.tobi.home-manager;
 
-in
-{
-  options.luksab.user.lukas.home-manager = {
-    desktop = mkEnableOption "activate deskop home-manager profile for lukas";
+in {
+  options.luksab.user.tobi.home-manager = {
+    desktop = mkEnableOption "activate deskop home-manager profile for tobi";
   };
 
   config = mkIf cfg.desktop {
-    luksab.user.lukas.home-manager.enable = true;
-    home-manager.users.lukas = {
+    luksab.user.tobi.home-manager.enable = true;
+    home-manager.users.tobi = {
       programs.command-not-found.enable = true;
       programs.password-store.enable = true;
 
@@ -24,8 +23,8 @@ in
 
       # Home Manager needs a bit of information about you and the
       # paths it should manage.
-      home.username = "lukas";
-      home.homeDirectory = "/home/lukas";
+      home.username = "tobi";
+      home.homeDirectory = "/home/tobi";
 
       xsession = {
         enable = true;

@@ -13,7 +13,7 @@
   networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.allowedUDPPorts = [ ];
 
-  # enroll with `sudo fprintd-enroll lukas`
+  # enroll with `sudo fprintd-enroll tobi`
   services.fprintd.enable = true;
   security.pam.services.login.fprintAuth = true;
   # security.pam.services.slock.fprintAuth = true;

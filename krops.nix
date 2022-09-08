@@ -17,7 +17,7 @@ let
       machine-config.file = toString ./.;
 
       secrets.pass = {
-        dir = toString /home/lukas/.local/share/password-store;
+        dir = toString /home/tobi/.local/share/password-store;
         name = "${name}";
       };
     }];
@@ -45,10 +45,7 @@ in rec {
   # Run with (e.g.):
   # nix-build ./krops.nix -A all && ./result
   # nix-build ./krops.nix -A desktop && ./result
-  # nix-build ./krops.nix -A servers && ./result
-  #
-  # nix-build ./krops.nix -A arm && ./result
-  # nix-build ./krops.nix -A majaArm && ./result
+
   # nix-build ./krops.nix -A pi4b && ./result
   # nix-build ./krops.nix -A laptop && ./result
 
@@ -57,25 +54,14 @@ in rec {
 
   desktop = createHost "desktop" "root@desktop";
 
-  nix86 = createHost "nix86" "root@x86.luksab.de";
-
-  arm = createHost "arm" "root@ocp.luksab.de";
-
-  majaArm = createHost "majaArm" "root@val.luksab.de";
-  rapaArm = createHost "rapaArm" "root@152.70.59.189";
-  olafArm = createHost "olafArm" "root@olaf.sabatschus.de";
-
   pi4b = createHost "pi4b" "root@192.168.178.55";
 
   pi4b2 = createHost "pi4b2" "root@192.168.178.35";
 
   # Groups
   all = pkgs.writeScript "deploy-all"
-    (lib.concatStringsSep "\n" [ laptop arm pi4b pi4b2 majaArm rapaArm ]);
+    (lib.concatStringsSep "\n" [ laptop pi4b pi4b2 ]);
 
   desktops = pkgs.writeScript "deploy-desktops"
     (lib.concatStringsSep "\n" [ laptop pi4b2 ]);
-
-  servers = pkgs.writeScript "deploy-servers"
-    (lib.concatStringsSep "\n" [ arm majaArm nix86 ]);
 }

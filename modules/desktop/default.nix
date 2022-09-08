@@ -5,19 +5,13 @@ in {
   options.luksab.desktop = { enable = mkEnableOption "enable desktop"; };
 
   config = mkIf cfg.enable {
-    luksab.user.lukas.home-manager.desktop = true;
+    luksab.user.tobi.home-manager.desktop = true;
 
     # Enable sound.
     sound.enable = true;
     hardware.pulseaudio = {
       enable = true;
       package = pkgs.pulseaudioFull;
-    };
-
-    fileSystems."/mnt/nas" = {
-      device = "10.31.70.5:/mnt/main";
-      fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" ];
     };
 
     boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -60,7 +54,7 @@ in {
 
     # # enable virtualbox
     # virtualisation.virtualbox.host.enable = true;
-    # users.extraGroups.vboxusers.members = [ "lukas" ];
+    # users.extraGroups.vboxusers.members = [ "tobi" ];
     # virtualisation.virtualbox.host.enableExtensionPack = true;
 
     programs.dconf.enable = true;
@@ -77,9 +71,11 @@ in {
 
     programs.kdeconnect.enable = true;
     programs.slock.enable = true;
-    security.wrappers."slock".source = pkgs.lib.mkForce "${pkgs.slock}/bin/slock-pam";
+    security.wrappers."slock".source =
+      pkgs.lib.mkForce "${pkgs.slock}/bin/slock-pam";
     systemd.user.services.xss-lock = {
-      serviceConfig.ExecStart = "${pkgs.xss-lock}/bin/xss-lock --session \${XDG_SESSION_ID} -- /run/wrappers/bin/slock";
+      serviceConfig.ExecStart =
+        "${pkgs.xss-lock}/bin/xss-lock --session \${XDG_SESSION_ID} -- /run/wrappers/bin/slock";
 
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];

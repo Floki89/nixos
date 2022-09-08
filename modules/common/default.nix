@@ -9,9 +9,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [ flake-self.overlays.default flake-self.overlays.master flake-self.overlays.stable ];
+    nixpkgs.overlays = [
+      flake-self.overlays.default
+      flake-self.overlays.master
+      flake-self.overlays.stable
+    ];
 
-    # home-manager.users.lukas.imports =
+    # home-manager.users.tobi.imports =
     #   [{ nixpkgs.overlays = [ flake-self.overlays.default ]; }];
     # already done in flake
 
@@ -21,12 +25,12 @@ in {
       wg_hosts.enable = true;
 
       user = {
-        lukas = { enable = true; };
+        tobi = { enable = true; };
         root.enable = true;
       };
     };
 
-    mayniklas.var.mainUser = "lukas";
+    mayniklas.var.mainUser = "tobi";
 
     environment.systemPackages = with pkgs; [
       git
@@ -73,20 +77,6 @@ in {
       '';
 
       settings = {
-        # binary cache -> build by DroneCI
-        trusted-public-keys = mkIf (cfg.disable-cache != true)
-          [ "cache.lounge.rocks:uXa8UuAEQoKFtU8Om/hq6d7U+HgcrduTVr8Cfl6JuaY=" ];
-        substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.nixos.org"
-          "https://cache.lounge.rocks?priority=100"
-          "https://s3.lounge.rocks/nix-cache?priority=50"
-        ];
-        trusted-substituters = mkIf (cfg.disable-cache != true) [
-          "https://cache.lounge.rocks"
-          "https://cache.nixos.org"
-          "https://s3.lounge.rocks/nix-cache/"
-        ];
-
         # Save space by hardlinking store files
         auto-optimise-store = true;
       };
