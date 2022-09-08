@@ -144,14 +144,19 @@
 
   boot = {
     loader = {
-      grub = {
-        enable = true;
-        version = 2;
-        device = "nodev";
-        efiSupport = true;
-        efiInstallAsRemovable = true;
-        useOSProber = true;
-        memtest86.enable = true;
+      # grub = {
+      #   enable = true;
+      #   version = 2;
+      #   device = "nodev";
+      #   efiSupport = true;
+      #   efiInstallAsRemovable = true;
+      #   useOSProber = true;
+      #   memtest86.enable = true;
+      # };
+      systemd-boot.enable = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
       };
     };
     cleanTmpDir = true;
