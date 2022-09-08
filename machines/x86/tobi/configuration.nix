@@ -204,7 +204,7 @@
     fsType = "ext4";
   };
 
-  fileSystems."/boot" = {
+  fileSystems."/boot/efi" = {
     # lsblk -o +UUID
     #      └─nvme0n1p1
     device = "/dev/disk/by-uuid/CEAB-223C";
