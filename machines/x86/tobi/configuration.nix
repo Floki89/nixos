@@ -205,14 +205,16 @@
   fileSystems."/" = {
     # lsblk -o +UUID
     #      └─vg-root
-    device = "/dev/disk/by-uuid/f3d2abac-317b-474a-858f-3105e696ef1e";
+    # device = "/dev/disk/by-uuid/f3d2abac-317b-474a-858f-3105e696ef1e";
+    device = "/dev/disk/by-uuid/5c37070e-0280-4af4-868a-15af5ae68d4e";
     fsType = "ext4";
   };
 
   fileSystems."/boot/efi" = {
     # lsblk -o +UUID
     #      └─nvme0n1p1
-    device = "/dev/disk/by-uuid/CEAB-223C";
+    # device = "/dev/disk/by-uuid/CEAB-223C";
+    device = "/dev/disk/by-uuid/686E-1CD6";
     fsType = "vfat";
   };
 }
