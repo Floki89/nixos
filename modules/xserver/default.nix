@@ -55,7 +55,7 @@ in {
         user = "tobi";
       };
 
-      displayManager.defaultSession = "none+dwm";
+      displayManager.defaultSession = "plasma";
 
       displayManager.lightdm = {
         enable = true;
