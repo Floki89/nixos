@@ -7,9 +7,8 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       brave
-      # google-chrome-dev
+      google-chrome
       enpass
-      spotify
       discord
       zoom-us
       ryzenadj
