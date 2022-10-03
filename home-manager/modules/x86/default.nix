@@ -7,7 +7,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       brave
-      Chrome-stable
+      google-chrome
       enpass
       discord
       zoom-us
